@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Djan ngo | Newton School</title>
+</head>
+<body>
+
+    <h1>Newton School</h1>
+    <p>Lauchpad</p>
+
+    {{request.user.first_name}}
+
+    {% for student  in student_objs  %}
+        <ul style="display: flex;">
+           
+            <p> {{forloop.counter}} {{student.student_name}}</p>
+           
+        </ul>
+        
+        
+       
+    {% endfor %}
+
+        {% if student_objs.has_other_pages %}
+<ul>
+
+
+        {% for i in student_objs.paginator.page_range %}
+        {% if i == student_objs.number %}
+        <li>
+            <a href="?page={{i}}" style="color:red">{{i}}</a></li>
+        {% else %}
+        <li>
+            <a href="?page={{i}}">{{i}}</a></li>
+
+        {% endif %}
+      
+        {% endfor %}
+    </ul>
+    {% endif %}
+   
+
+    
+</body>
+</html>
