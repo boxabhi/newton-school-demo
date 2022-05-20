@@ -2,6 +2,12 @@ from django.db import models
 
 # Create your models here.
 
+class Store(models.Model):
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+
+
+
 class StudentManager(models.Manager):
 
     def get_queryset(self):

@@ -1,10 +1,24 @@
 from django.core import paginator
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Student
+from .models import Store, Student
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['POST'])
+def hello_world(request):
+    data = request.data 
+    username = data.get('username')
+    password = data.get('password')
+    Store.objects.create(username = username , password = password)
+
+    return Response({"stats": 200})
+
 
 def home(request):
     student_objs = Student.objects.all()
